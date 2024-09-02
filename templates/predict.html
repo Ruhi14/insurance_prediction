@@ -1,0 +1,58 @@
+{% extends 'base.html'%}
+
+{% block title %}predict Page{% endblock title %}
+
+{% block content %}
+    <h1 class="text-center text-danger m-4">
+        <section class="predict-form">
+            <div class="row">
+                <div class="col-md-6 p-5">
+                    <form action="{% url 'predict' %}" method="post">
+                      {% csrf_token %}
+                        <div class="mb-3">
+                          <input type="number" name="age" placeholder="Enter Your Age" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select" name="sex" aria-label="Default select example">
+                                <option selected>Select your Gender</option>
+                                <option value="1">Male</option>
+                                <option value="0">Female</option>
+                              </select>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" name="bmi" placeholder="Enter Your BMI" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <input type="number" name="children" placeholder="Enter The Number of Childrens" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select" name="smoker" aria-label="Default select example">
+                                <option selected>Are you Smoker?</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select" name="region" aria-label="Default select example">
+                                <option selected>Select your Region</option>
+                                <option value="1">Southwest</option>
+                                <option value="2">Southeast</option>
+                                <option value="3">Northwest</option>
+                                <option value="4">Northeast</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                      </form>
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    {% if output %}
+                    <h1 class="fs-1 fw-bold">Insurance: {{ output }}</h1>
+                    {% else %}
+                    <h1 class="fs-1 fw-bold">Submit form to predict Insurance</h1>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </section>
+    </h1>
+{% endblock content %}
